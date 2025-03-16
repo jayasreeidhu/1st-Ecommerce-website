@@ -1,0 +1,10 @@
+{% extends 'custom_admin/index.html' %}
+{% block content %}
+<h2>Edit Offer for {{ offer.product.name }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Update Offer</button>
+</form>
+<a href="{% url 'custom_admin:products_view' %}" class="btn btn-secondary">Cancel</a>
+{% endblock %}
