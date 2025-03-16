@@ -1,0 +1,13 @@
+{% extends "layouts/mainsecond.html" %}
+
+{% block body %}
+<div class="container">
+    <h2>Add Address</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="next" value="{{ next }}">
+        <button type="submit" class="btn">Add Address</button>
+    </form>
+</div>
+{% endblock body %}
