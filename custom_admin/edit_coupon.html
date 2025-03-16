@@ -1,0 +1,12 @@
+{% extends 'custom_admin/index.html' %}
+{% block content %}
+  <div class="container mt-4">
+    <h2>Edit Coupon: {{ coupon.code }}</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-success">Save Changes</button>
+      <a href="{% url 'custom_admin:coupon_management' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+{% endblock %}
