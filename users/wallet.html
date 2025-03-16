@@ -1,0 +1,30 @@
+{% extends "layouts/mainsecond.html" %}
+
+{% load static %}
+
+
+{% block body %}
+
+
+<h2>{{ user.username }}'s Wallet</h2>
+<p>Balance: ₹{{ wallet.balance }}</p>
+
+<h3>Transactions</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in transactions %}
+        <tr>
+            <td>{{ transaction.transaction_type }}</td>
+            <td>₹{{ transaction.amount }}</td>
+            <td>{{ transaction.timestamp }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
