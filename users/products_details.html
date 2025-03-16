@@ -1,0 +1,616 @@
+{% extends "layouts/mainsecond.html" %}
+
+{% load static %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Page</title>
+    <style>
+      /* Global styles */
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #f9f9f9;
+          color: #333;
+      }
+
+      /* Navbar Placeholder */
+      .navbar {
+          background-color: #fff;
+          padding: 15px 20px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+
+      .navbar a {
+          color: #333;
+          text-decoration: none;
+          margin: 0 15px;
+          font-weight: 500;
+      }
+
+      .navbar a:hover {
+          text-decoration: underline;
+      }
+      
+      /* Breadcrumb/Heading Section */
+      .breadcrumb {
+          background-color: #f5f5f5;
+          padding: 10px 20px;
+          border-bottom: 1px solid #ddd;
+      }
+
+      .breadcrumb a {
+          color: #555;
+          text-decoration: none;
+          font-size: 14px;
+      }
+
+      .breadcrumb a:hover {
+          text-decoration: underline;
+      }
+
+      .breadcrumb span {
+          color: #777;
+          margin: 0 5px;
+      }
+      /* Product Container */
+.product-container {
+  display: flex;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+ 
+  
+}
+
+/* Product Images */
+.product-images {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.product-images .main-image img {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ddd;
+}
+
+.h1 {
+  text-align: left;
+}
+
+.image-thumbnails {
+  display: flex;
+  margin-top: 10px;
+}
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.quantity-btn {
+  width: 35px;
+  height: 35px;
+  font-size: 25px;
+  text-align: left;
+  border: 1px solid #ccc;
+  background-color:rgb(45, 186, 247);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.quantity-btn:hover {
+  background-color: #ddd;
+}
+
+#quantity {
+  width: 60px;
+  height: 30px;
+  text-align: center;
+  border: 1px solid #ccc;
+  margin: 0 5px;
+}
+.image-thumbnails img {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.image-thumbnails img:hover {
+  border-color: #0073e6;
+}
+{% comment %} .color-thumbnails{
+  display: flex;
+  margin-top: 10px;
+}
+.color-thumbnails img {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+
+}
+.color-thumbnails img:hover{
+  border-color: #0073e6;
+} {% endcomment %}
+
+.color-varient {
+  display: flex;
+  flex-direction: row; 
+  align-items: flex-start; 
+  gap: 15px; 
+  marign_right:15px;
+}
+
+.color-thumbnails {
+  margin: 10px 0;
+}
+.color-thumbnails img{
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+
+}
+
+.color-swatch {
+  width: 70px;
+  height: 50px;
+  cursor: pointer;
+  border: 3px solid #ccc;
+  margin: 10px 0;
+}
+
+
+/* Product Info */
+.product-info {
+  flex: 2;
+}
+
+.product-info h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: left; 
+}
+.product-info .highlight {
+  color: #777;
+  font-size: 14px;
+}
+
+.product-info .ratings {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.product-info .price {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.current-price {
+  color: #e63946;
+  font-weight: bold;
+}
+
+.original-price {
+  text-decoration: line-through;
+  margin-left: 10px;
+  color: #777;
+}
+
+.discount {
+  color: #2a9d8f;
+  margin-left: 10px;
+}
+
+.coupon-code {
+  color: #e76f51;
+  font-weight: bold;
+}
+
+.stock-status {
+  margin: 10px 0;
+}
+
+.offers ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px 5px;
+  border: none;
+  color: #fff;
+  background-color: #0073e6;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #005bb5;
+}
+
+/* Related Products */
+.related-products {
+  padding: 20px;
+  background-color: #fff;
+  margin: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.related-products h2 {
+  margin-bottom: 20px;
+}
+
+.related-item {
+  display: inline-block;
+  text-align: center;
+  margin-right: 20px;
+}
+
+.related-item img {
+  width: 100px;
+  height: auto;
+  border: 1px solid #ddd;
+}
+
+.related-item p {
+  margin-top: 5px;
+  font-size: 14px;
+}
+/* Color Variants */
+.color-variants {
+    margin: 20px 0;
+}
+
+.color-options {
+    display: flex;
+    gap: 10px;
+}
+
+.color-options img {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.color-options img:hover {
+    border-color: #0073e6;
+}
+/* Product Details */
+.product-details {
+    margin: 20px 0;
+}
+
+.product-details ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.product-details li {
+    margin: 10px 0;
+    font-size: 14px;
+    
+}
+.color-swatch.active {
+  border-color: #0073e6;
+  box-shadow: 0 0 5px #0073e6;
+}
+
+/* Main image styling */
+.product-images .main-image img {
+    width: 100%;
+    transition: transform 0.3s ease; /* Smooth transition effect */
+}
+
+.product-images .main-image:hover img {
+    transform: scale(1.2); /* Zoom in effect */
+}
+
+/* Thumbnail styling */
+.product-images .image-thumbnails img {
+    width: 100px;
+    height: auto;
+    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Smooth transition effect */
+}
+
+.product-images .image-thumbnails img:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Other styles for the product details page */
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-images, .product-info {
+    flex: 1;
+    padding: 20px;
+}
+
+.product-info {
+    max-width: 600px;
+}
+
+.product-description {
+    padding: 20px;
+}
+
+.related-products {
+    padding: 20px;
+}
+
+.related-items {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.related-item {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+}
+
+.related-item img {
+    width: 150px;
+    height: auto;
+    transition: transform 0.3s ease; /* Smooth transition effect */
+}
+
+.related-item img:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+
+    </style>
+  </head>
+  <body>
+
+
+       <!-- Breadcrumb Section -->
+    <div class="breadcrumb">
+      <a href="#">Home</a>
+      <span>›</span>
+      <a href="#">Shop</a>
+      <span>›</span>
+      <a href="#">chairs</a>
+      <span>›</span>
+      <a href="#"><b>Sofa chairs</b></a>
+  </div>
+<!-- Main Product Container -->
+<div class="product-container">
+  <!-- Product Images -->
+  <div class="product-images">
+      <div class="main-image">
+          <img src="{{ product.main_image.url }}" alt="Main Chair Image">
+      </div>
+      <div class="image-thumbnails">
+          {% for thumbnail in thumbnails %}
+              <img src="{{ thumbnail.image.url }}" alt="{{ thumbnail.alt_text }}" style="width: 100px; height: auto;">
+              <p>{{ thumbnail.alt_text }}</p>
+          {% endfor %}
+      </div>
+  </div>
+
+  <!-- Product Details -->
+  <div class="product-info">
+      <h1>{{ product.name }}</h1>
+      <p class="highlight">{{ product.color }}</p> 
+      <div class="ratings">
+          {{ product.rating }} ⭐⭐⭐⭐⭐ <span>({{ product.sold_count }} Sold)</span>
+      </div>
+      
+      <div class="price">
+          <span class="current-price">₹{{ product.price }}</span>
+          <span class="original-price">₹{{ product.original_price }}</span>
+          <span class="discount">{{ product.discount_percentage }}% OFF</span>
+      </div>
+
+
+      <!-- Stock Status -->
+      <div class="stock-status">
+          <strong>Stock:</strong> 
+          {% if is_out_of_stock %}
+              <span style="color: red; font-weight: bold;">Out of Stock</span>
+          {% else %}
+              <span style="color: green; font-weight: bold;">Available</span>
+          {% endif %}
+      </div>
+
+      <!-- Color Variants -->
+      <div class="color-variant">
+          <h1>Color Variant</h1>
+          {% for variant in product.variants.all %}
+              <div class="color-thumbnails">
+                  {% if variant.color_image %}
+                      <img 
+                          src="{{ variant.color_image.url }}" 
+                          alt="{{ variant.variant_value }}" 
+                          class="color-swatch" 
+                          onclick="changeImage('{{ variant.color_image.url }}')"
+                      >
+                  {% else %}
+                      <p>No image available</p>
+                  {% endif %}
+              </div>
+          {% endfor %}
+      </div>
+
+      <!-- Add to Cart Button -->
+      <form method="POST" action="{% url 'add_to_cart' product.id %}">
+          {% csrf_token %}
+          <button type="submit" class="add-to-cart" {% if is_out_of_stock %}disabled{% endif %}>
+              {% if is_out_of_stock %}
+                  Out of Stock
+              {% else %}
+                  Add to Cart
+              {% endif %}
+          </button>
+      </form>
+
+      <!-- Add to Wishlist Button (Only for Logged-in Users) -->
+      {% if user.is_authenticated %}
+          <form action="{% url 'add_to_wishlist' product.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-primary">Add to Wishlist</button>
+          </form>
+      {% endif %}
+  </div>
+</div>
+
+
+
+<!-- Product Description Section -->
+<div class="product-description">
+  <h2>{{product.description}}</h2>
+  <p>The Dhrona Sofa Chair combines luxury and comfort with its premium velvet material and ergonomic design.</p>
+  <ul>
+      <li>{{product.brand}}</li>
+      <li>{{product.material}}</li>
+      <li>{{product.weight}}</li>
+      <li>{{product.dimensions}}</li>
+      <li>{{product.warranty}}</li>
+  </ul>
+</div>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Related Products Section -->
+<div class="related-products">
+  <h2>Related Products</h2>
+  <div class="related-items">
+      <div class="related-item">
+          <img src="{% static 'C:\Users\jayas\OneDrive\Desktop\Furniture Ecommerce\Ecommerce\static\images\sofa chairs\Screenshot 2025-01-02 200611.png' %}" alt="Product 1">
+          <p>Classic Lounge Chair</p>
+          <span class="price">₹14,999</span>
+      </div>
+      <div class="related-item">
+          <img src="{% static 'C:\Users\jayas\OneDrive\Desktop\Furniture Ecommerce\Ecommerce\static\images\sofa chairs\Screenshot 2025-01-02 201227.png' %}" alt="Product 2">
+          <p>Ergonomic Recliner</p>
+          <span class="price">₹17,999</span>
+      </div>
+      <div class="related-item">
+          <img src="{% static 'C:\Users\jayas\OneDrive\Desktop\Furniture Ecommerce\Ecommerce\static\images\sofa chairs\Screenshot 2025-01-02 201137.png' %}" alt="Product 3">
+          <p>Leather Armchair</p>
+          <span class="price">₹18,499</span>
+      </div>
+      <div class="related-item">
+          <img src="{% static 'C:\Users\jayas\OneDrive\Desktop\Furniture Ecommerce\Ecommerce\static\images\sofa chairs\Screenshot 2025-01-02 200925.png' %}" alt="Product 4">
+          <p>Velvet Ottoman Set</p>
+          <span class="price">₹8,999</span>
+      </div>
+      <div class="related-item">
+          <img src="{% static 'C:\Users\jayas\OneDrive\Desktop\Furniture Ecommerce\Ecommerce\static\images\sofa chairs\Screenshot 2025-01-02 200750.png' %}" alt="Product 5">
+          <p>Contemporary Sofa Chair</p>
+          <span class="price">₹15,999</span>
+      </div>
+      
+      <div class="related-item">
+        <img src="{% static 'C:\Users\jayas\OneDrive\Desktop\Furniture Ecommerce\Ecommerce\static\images\sofa chairs\Screenshot 2025-01-02 200523.png' %}" alt="Product 6">
+        <p>Minimalist Lounge Chair</p>
+        <span class="price">₹19,999</span>
+    </div>
+    <div class="related-item">
+      <img src="{% static 'C:\Users\jayas\OneDrive\Desktop\Furniture Ecommerce\Ecommerce\static\images\sofa chairs\Screenshot 2025-01-02 200523.png' %}" alt="Product 6">
+      <p>Minimalist Lounge Chair</p>
+      <span class="price">₹19,999</span>
+  </div>
+  <div class="related-item">
+    <img src="{% static 'C:\Users\jayas\OneDrive\Desktop\Furniture Ecommerce\Ecommerce\static\images\sofa chairs\Screenshot 2025-01-02 200750.png' %}" alt="Product 5">
+    <p>Contemporary Sofa Chair</p>
+    <span class="price">₹15,999</span>
+</div>
+
+  </div>
+</div>
+
+</body>
+<script>
+  function changeImage(imageUrl) {
+      // Find the main image element and update its source
+      const mainImage = document.querySelector('.main-image img');
+      mainImage.src = imageUrl;
+
+
+      const thumbnails = document.querySelectorAll('.color-swatch');
+      thumbnails.forEach(thumbnail => thumbnail.classList.remove('active'));
+      event.target.classList.add('active');
+  }
+  
+</script>
+</html>
+
+
+
+{% endblock body %}
