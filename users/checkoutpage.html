@@ -1,0 +1,138 @@
+{% extends "layouts/mainsecond.html" %}
+{% load static %}
+
+{% block body %}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<style>
+    .address-group {
+        padding: 12px;
+        margin-bottom: 10px;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        background: white;
+    }
+    .address-group input[type="radio"]:checked + label {
+        border: 2px solid #007bff;
+        background: #e3f2fd;
+        color: #007bff;
+        font-weight: bold;
+    }
+    .address-group label {
+        display: block;
+        padding: 10px;
+        cursor: pointer;
+    }
+    .payment-option div {
+        padding: 8px;
+        border-radius: 5px;
+    }
+    button {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+    button:hover {
+        background: #0056b3;
+    }
+</style>
+
+<div class="container">
+    <h2>Checkout</h2>
+    
+    {% if addresses %}
+        <form id="checkoutForm" method="post" action="{% url 'place_order' %}">
+            {% csrf_token %}
+            
+            <h3>Select Address</h3>
+            {% for address in addresses %}
+                <div class="address-group">
+                    <input type="radio" name="address_id" value="{{ address.id }}" id="address_{{ address.id }}" required>
+                    <label for="address_{{ address.id }}">
+                        {{ address.first_name }} {{ address.last_name }}<br>
+                        {{ address.street_address }}<br>
+                        {{ address.house_no }}<br>
+                        {{ address.postcode }}<br>
+                        {{ address.mobile }}<br>
+                        <a href="{% url 'edit_address' address.id %}?next={% url 'checkoutpage' %}">Edit</a>
+                        <a href="{% url 'delete_address' address.id %}?next={% url 'checkoutpage' %}" 
+               onclick="return confirm('Are you sure you want to delete this address?');">Delete</a>
+                    </label>
+                </div>
+            {% endfor %}
+            <a href="{% url 'add_Address' %}?next={% url 'checkoutpage' %}">Add New Address</a>
+           
+            
+            <div class="product-summary">
+                {% for item in cart_items %}
+                    <div>{{ item.item.quantity }} x {{ item.item.product.name }} - ₹{{ item.item_total|floatformat:2 }}</div>
+                {% endfor %}
+                <div><strong>Number of items: {{ cart_items|length }}</strong></div>
+                <div class="total-price"><strong>Total Price: ₹{{ total_price|floatformat:0 }}</strong></div>
+                <div class="discount-amount"><strong>Discount Applied: -₹{{ discount_amount|floatformat:0 }}</strong></div>
+                <p>Delivery Charge: ₹<span id="delivery-charge">{{ delivery_charge }}</span></p>
+                <div class="final-price"><strong>Final Price: ₹<span id="final-price">{{ final_price|floatformat:0 }}</span></strong></div>
+            </div>
+            
+            <h3>Select Payment Option</h3>
+            <div class="payment-option">
+                <div>
+                    <input type="radio" name="payment_option" value="cash_on_delivery" id="cash_on_delivery" required>
+                    <label for="cash_on_delivery">Cash on Delivery</label>  
+                </div>
+                <div>
+                    <input type="radio" name="payment_option" value="razorpay" id="razorpay" required>
+                    <label for="razorpay">Razorpay</label>
+                </div>
+                <div>
+                    <input type="radio" name="payment_option" value="paypal" id="paypal" required>
+                    <label for="paypal">PayPal</label>
+                </div>
+            </div>
+            
+            <input type="hidden" name="final_price" value="{{ final_price }}">
+
+            <button type="submit" id="placeOrderBtn">Place Order</button>
+        </form>
+    {% else %}
+        <p>You do not have any saved address. Please add an address to continue.</p>
+        <a class="btn btn-primary" href="{% url 'add_Address' %}">Add New Address</a>
+    {% endif %}
+</div>
+<script>
+    document.getElementById('checkoutForm').addEventListener('submit', function(event) {
+        const paymentOption = document.querySelector('input[name="payment_option"]:checked');
+
+        if (!paymentOption) {
+            alert("Please select a payment option.");
+            event.preventDefault();
+            return;
+        }
+
+        if (paymentOption.value === 'razorpay') {
+            event.preventDefault(); // Prevent default form submission
+            
+            // Redirect to Razorpay payment page with final price
+            const finalPrice = "{{ final_price }}";  // Pass Django final_price
+            window.location.href = `/payment/initiate-payment/?amount=${finalPrice}`;
+        }
+        else if (paymentOption.value === 'paypal') {
+            event.preventDefault(); // Prevent default form submission
+
+            // Submit the form to create the PayPal payment
+            document.getElementById('checkoutForm').action = `{% url 'create_paypal_payment' %}`;
+            document.getElementById('checkoutForm').submit();
+        }
+    });
+</script> 
+
+
+{% endblock %}
