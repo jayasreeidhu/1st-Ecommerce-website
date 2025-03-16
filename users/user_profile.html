@@ -1,0 +1,145 @@
+{% extends "layouts/mainsecond.html" %}
+
+{% load static %}
+
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+<style>
+
+    h2 {
+        color: #2c3e50;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    form {
+        margin-bottom: 30px;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    form label {
+        display: block;
+        margin-bottom: 5px;
+        color: #34495e;
+    }
+
+    form input[type="text"],
+    form input[type="password"],
+    form input[type="email"],
+    form input[type="tel"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #bdc3c7;
+        border-radius: 4px;
+        background-color: #ecf0f1;
+    }
+
+    form .btn {
+        display: inline-block;
+        background-color: #3498db;
+        color: #ffffff;
+        padding: 10px 15px;
+        text-decoration: none;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+    }
+
+    form .btn:hover {
+        background-color: #2980b9;
+    }
+
+    .alert {
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .alert-success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+    }
+
+    .alert-dismissible .btn-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        font-size: 20px;
+        line-height: 20px;
+        color: #333;
+        cursor: pointer;
+    }
+
+    .btn-close:hover {
+        color: #000;
+    }
+</style>
+<body>
+
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+    <div class="container">
+        <h1>Welcome, {{ request.user.username }}!</h1>
+        <h2>Update Profile</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+        {% if request.user.is_superuser %}
+            <script>
+                document.querySelectorAll("input").forEach(input => input.disabled = true);
+            </script>
+        {% endif %}
+            <button type="submit" class="btn">Update Profile</button>
+        </form>
+        <h2>Change Password</h2>
+        <form method="GET" action="{% url 'change_password' %}">
+            <button type="submit" class="btn">Change Password</button>
+        </form>
+        <h2>Manage Addresses</h2>
+        {% comment %} <a href="{% url 'add_Address' %}" class="btn">Add Address</a> {% endcomment %}
+        <a href="{% url 'add_Address' %}?next={% url 'user_profile' %}">Add New Address</a>
+        <ul>
+        {% for address in request.user.address_set.all %}
+            <li>
+                {{ address.first_name }} {{ address.last_name }} - {{ address.street_address }}
+                <a href="{% url 'edit_address' address.id %}" class="btn">Edit</a>
+                <a href="{% url 'delete_address' address.id %}" class="btn">Delete</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</body>
+<script>
+    window.onload = function () {
+        if (performance.navigation.type === 2) { 
+            window.location.href = "{% url 'user_profile' %}"; 
+        }
+    };
+</script>
+</html>
+
+
+{% endblock body %} 
+
