@@ -1,0 +1,11 @@
+{% extends 'custom_admin/index.html' %}
+
+{% block content %}
+<h2>Delete Product</h2>
+<p>Are you sure you want to delete "{{ product.name }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a href="{% url 'custom_admin:products_details' product.id %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
