@@ -1,6 +1,10 @@
 from django.apps import AppConfig
 
 
-class PaymentConfig(AppConfig):
+class HomeConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'payment'
+    name = 'home'
+
+    def ready(self):
+        import home.signals
+
