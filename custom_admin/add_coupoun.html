@@ -1,0 +1,12 @@
+{% extends 'custom_admin/index.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Add Coupon</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Save Coupon</button>
+    </form>
+  </div>
+{% endblock %}
