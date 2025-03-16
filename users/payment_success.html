@@ -1,0 +1,56 @@
+{% extends "layouts/mainsecond.html" %}
+{% block body %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Successful</title>
+</head>
+<body>
+    <h1>Payment Successful</h1>
+    <p>Thank you for your purchase! Your payment has been processed successfully.</p>
+
+    {% if order %}
+        <h2>Order Details</h2>
+        <p><strong>Order ID:</strong> {{ order.id }}</p>
+        <p><strong>Transaction ID:</strong> {{ transaction_id }}</p>
+        <p><strong>Total Amount:</strong> ₹{{ total_amount }}</p>
+        <p><strong>Payment Status:</strong> {{ payment_status }}</p>
+        <p><strong>Payment Method:</strong> {{ payment_method }}</p>
+        <p><strong>Payment State:</strong> {{ payment_state }}</p>
+
+        <p><strong>Delivery Date:</strong> {{ order.delivery_date|date:"d M Y" }}</p>
+
+        <h2>Shipping Address</h2>
+        {% if shipping_address %}
+            <p><strong>Name:</strong> {{ shipping_address.first_name }} {{ shipping_address.last_name }}</p>
+            <p><strong>Street:</strong> {{ shipping_address.street_address }}</p>
+            <p><strong>City:</strong> {{ shipping_address.city }}, {{ shipping_address.region }}</p>
+            <p><strong>Postcode:</strong> {{ shipping_address.postcode }}</p>
+            <p><strong>Mobile:</strong> {{ shipping_address.mobile }}</p>
+        {% else %}
+            <p>No shipping address found.</p>
+        {% endif %}
+
+        <h2>Purchased Products</h2>
+        {% if purchased_products %}
+            <ul>
+                {% for item in purchased_products %}
+                    <li>{{ item.product.name }} - Quantity: {{ item.quantity }} - Price: ₹{{ item.price }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No purchased products found.</p>
+        {% endif %}
+
+    {% else %}
+        <h2 style="color: red;">Order details are missing.</h2>
+        <p>Please contact support if this issue persists.</p>
+    {% endif %}
+
+
+    <a href="{% url 'index' %}">Continue Shopping</a>
+</body>
+</html>
+
+{% endblock %}
