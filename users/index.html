@@ -1,0 +1,307 @@
+ {% extends "layouts/main.html" %}
+
+{% load static %}
+
+{% block body %}
+
+		<!-- Start Product Section -->
+<div class="products-container">
+    <h2 class="products-heading">Explore Our Products</h2>
+    <div class="product-section">
+		<div class="banner">
+			<img src="{% static 'C:\Users\jayas\OneDrive\Desktop\Furniture Ecommerce\Ecommerce\static\images\ligts and lamps\RDS_EndSoon_Slideshow.png' %}" alt="Sale Banner" class="banner-image">
+			<div class="banner-text">
+				<h2>Republic Day Sale</h2>
+				<p>Up to 70% off on all products!</p>
+				<a href="{% url 'products' %}" class="btn btn-primary">Shop Now</a>
+			</div>
+		</div>
+	</div>
+        <!-- Product Item 1 -->
+        {% comment %} <div class="product-item">
+            <a href="{% url 'products' %}">
+                <img src="{% static 'images/1d894b841805661ae013069637f5ef1b.jpg' %}" class="product-thumbnail" alt="Living Room">
+                <h3>Chairs</h3>
+            </a>
+        </div>
+        <!-- Product Item 2 -->
+        <div class="product-item">       
+                <img src="{% static 'images/furniture-for-modern-house-with-neutral-color-schemes-in-modern-grey-sectional-sofa-for-living-room-furniture-also-large-square-fabric-coffee-table-with-rug-area.jpg' %}" class="product-thumbnail" alt="Bedroom">
+                <h3>Sofas</h3>
+        </div>
+        <!-- Product Item 3 -->
+        <div class="product-item">
+                <img src="{% static 'C:\Users\jayas\OneDrive\Desktop\Furniture Ecommerce\Ecommerce\static\images\Brilliant_Tips_for_Stone_Types_Newbies.jpg' %}" class="product-thumbnail" alt="Kitchen">
+                <h3>Beds and Coats</h3>
+        </div>
+        <!-- Product Item 4 -->
+        <div class="product-item">
+                <img src="{% static 'images/20-Best-Collection-of-Executive-Office-Table-And-Chairs.jpg' %}" class="product-thumbnail" alt="Dining Room">
+                <h3>Tables</h3>
+        </div>
+        <!-- Product Item 5 -->
+        <div class="product-item">
+                <img src="{% static 'images/1.jpg' %}" class="product-thumbnail" alt="Dining Room">
+                <h3>Wardrobe</h3>
+        </div>
+        <!-- Product Item 6 -->
+        <div class="product-item">
+                <img src="{% static 'images/Decorbuddy-How-To-Use-Good-Lighting-1.jpg' %}" class="product-thumbnail" alt="Lights and Lamps">
+                <h3>Lights and Lamps</h3>
+        </div>
+    </div>
+</div> {% endcomment %}
+
+		  
+		<!-- End Product Section -->
+
+		<!-- Start Why Choose Us Section -->
+		<div class="why-choose-section">
+			<div class="container">
+				<div class="row justify-content-between">
+					<div class="col-lg-6">
+						<h2 class="section-title">Why Choose Us</h2>
+						<p>We offer exceptional furniture crafted from the finest materials, designed to enhance both the style and comfort of your space. Our commitment to quality, innovation, and customer satisfaction ensures that every piece not only meets but exceeds your expectations.</p>
+
+						<div class="row my-5">
+							<div class="col-6 col-md-6">
+								<div class="feature">
+									<div class="icon">
+										<img src="{% static 'images/truck.svg' %}" alt="Image" class="imf-fluid">
+									</div>
+									<h3>Fast &amp; Free Shipping</h3>
+									<p>ensuring your furniture arrives quickly and without extra cost, so you can transform your space with ease.</p>
+								</div>
+							</div>
+
+							<div class="col-6 col-md-6">
+								<div class="feature">
+									<div class="icon">
+										<img src="{% static 'images/bag.svg' %}" alt="Image" class="imf-fluid">
+									</div>
+									<h3>Easy to Shop</h3>
+									<p>Shopping made easy with a seamless online experience, offering a wide selection and quick checkout.</p>
+								</div>
+							</div>
+
+							<div class="col-6 col-md-6">
+								<div class="feature">
+									<div class="icon">
+										<img src="{% static 'images/support.svg' %}" alt="Image" class="imf-fluid">
+									</div>
+									<h3>24/7 Support</h3>
+									<p>Support with our dedicated team, always ready to assist you whenever you need.</p>
+								</div>
+							</div>
+
+							<div class="col-6 col-md-6">
+								<div class="feature">
+									<div class="icon">
+										<img src="{% static 'images/return.svg' %}" alt="Image" class="imf-fluid">
+									</div>
+									<h3>Hassle Free Returns</h3>
+									<p>free returns with our simple process, ensuring a smooth and stress-free experience.</p>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="col-lg-5">
+						<div class="img-wrap">
+							<img src="{% static 'C:\Users\jayas\OneDrive\Desktop\Furniture Ecommerce\Ecommerce\static\images\sofa2.jpeg' %}" alt="Image" class="img-fluid">
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- End Why Choose Us Section -->
+
+		<!-- Start We Help Section -->
+		<div class="we-help-section">
+			<div class="container">
+				<div class="row justify-content-between">
+					<div class="col-lg-7 mb-5 mb-lg-0">
+						<div class="imgs-grid">
+							<div class="grid grid-1"><img src="{% static 'C:\Users\jayas\OneDrive\Desktop\Furniture Ecommerce\Ecommerce\static\images\RD_LaurelWay_0111_F-35c7768324394f139425937f2527ca92.jpg' %}" alt="Untree.co"></div>
+							<div class="grid grid-2"><img src="{% static 'C:\Users\jayas\OneDrive\Desktop\Furniture Ecommerce\Ecommerce\static\images\Brilliant_Tips_for_Stone_Types_Newbies.jpg' %}" alt="Untree.co"></div>
+							<div class="grid grid-3"><img src="{% static 'C:\Users\jayas\OneDrive\Desktop\Furniture Ecommerce\Ecommerce\static\images\haddigan_d596 dining room group 4-b1.jpg' %}" alt="Untree.co"></div>
+						</div>
+					</div>
+					<div class="col-lg-5 ps-lg-5">
+						<h2 class="section-title mb-4">We Help You Make Modern Interior Design</h2>
+						<p>We help you transform your space with modern interior design solutions that combine aesthetic appeal and functionality. Our team collaborates with you to understand your vision, crafting stylish, comfortable, and personalized environments. From conceptualization to completion, we ensure that every detail reflects your taste while enhancing the usability of your space.</p>
+
+						<ul class="list-unstyled custom-list my-4">
+							<li>Transform your space with stylish, functional, and personalized design solutions</li>
+							<li>Collaborate with experts to create spaces that reflect your vision.</li>
+							<li>Experience seamless design that blends aesthetics with practical functionality.</li>
+							<li>Enjoy designs tailored to enhance both beauty and comfort of spaces.</li>
+						</ul>
+						<p><a herf="#" class="btn">Explore</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End We Help Section -->
+
+		<!-- Start Popular Product -->
+		<div class="popular-product">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
+						<div class="product-item-sm d-flex">
+							<div class="thumbnail">
+								<img src="{% static 'C:\Users\jayas\OneDrive\Desktop\Furniture Ecommerce\Ecommerce\static\images\arm chairs\wood-antique-arm-chairs.jpg' %}" alt="Image" class="img-fluid">
+							</div>
+							<div class="pt-3">
+								<h3>Sofa Chair</h3>
+								<p>Comfort, style, sleek design. Modern living redefined. </p>
+								<p><a href="#">Read More</a></p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
+						<div class="product-item-sm d-flex">
+							<div class="thumbnail">
+								<img src="{% static 'C:\Users\jayas\OneDrive\Desktop\Furniture Ecommerce\Ecommerce\static\images\floading chair\9c5ba22fd807ca532a546c9a0cdaa8a9.jpg' %}" alt="Image" class="img-fluid">
+							</div>
+							<div class="pt-3">
+								<h3>floading Chair</h3>
+								<p>Portable, lightweight, space-saving. Ideal for versatile seating. </p>
+								<p><a href="#">Read More</a></p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
+						<div class="product-item-sm d-flex">
+							<div class="thumbnail">
+								<img src="{% static 'C:\Users\jayas\OneDrive\Desktop\Furniture Ecommerce\Ecommerce\static\images\office chairs\kcream-leather-office-chair-1-1024x1024.jpg' %}" alt="Image" class="img-fluid">
+							</div>
+							<div class="pt-3">
+								<h3>Office Chair</h3>
+								<p>Ergonomic, durable, sleek design. Perfect for productive work. </p>
+								<p><a href="#">Read More</a></p>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- End Popular Product -->
+
+		<!-- Start Testimonial Slider -->
+		<div class="testimonial-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-7 mx-auto text-center">
+						<h2 class="section-title">Testimonials</h2>
+					</div>
+				</div>
+
+				<div class="row justify-content-center">
+					<div class="col-lg-12">
+						<div class="testimonial-slider-wrap text-center">
+
+							<div id="testimonial-nav">
+								<span class="prev" data-controls="prev"><span class="fa fa-chevron-left"></span></span>
+								<span class="next" data-controls="next"><span class="fa fa-chevron-right"></span></span>
+							</div>
+
+							<div class="testimonial-slider">
+								
+								<div class="item">
+									<div class="row justify-content-center">
+										<div class="col-lg-8 mx-auto">
+
+											<div class="testimonial-block text-center">
+												<blockquote class="mb-5">
+													<p>&ldquo;"The level of craftsmanship and attention to detail is unmatched. The furniture transformed our space beautifully and added a modern touch we absolutely love."&rdquo;</p>
+												</blockquote>
+
+												<div class="author-info">
+													<div class="author-pic">
+														<img src="{% static 'images/person-1.png' %}" alt="Maria Jones" class="img-fluid">
+													</div>
+													<h3 class="font-weight-bold">Maria Jones</h3>
+													<span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div> 
+								<!-- END item -->
+
+								<div class="item">
+									<div class="row justify-content-center">
+										<div class="col-lg-8 mx-auto">
+
+											<div class="testimonial-block text-center">
+												<blockquote class="mb-5">
+													<p>&ldquo;"Exceptional quality and design! The team truly understood our needs and delivered furniture that is both stylish and functional. Highly recommend!"&rdquo;</p>
+												</blockquote>
+
+												<div class="author-info">
+													<div class="author-pic">
+														<img src="{% static 'images/person-1.png' %}" alt="Maria Jones" class="img-fluid">
+													</div>
+													<h3 class="font-weight-bold">Maria Jones</h3>
+													<span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div> 
+								<!-- END item -->
+
+								<div class="item">
+									<div class="row justify-content-center">
+										<div class="col-lg-8 mx-auto">
+
+											<div class="testimonial-block text-center">
+												<blockquote class="mb-5">
+													<p>&ldquo;"From start to finish, the process was seamless. The designs are stunning, and the comfort is incredible. We're thrilled with the results!"&rdquo;</p>
+												</blockquote>
+
+												<div class="author-info">
+													<div class="author-pic">
+														<img src="{% static 'images/person-1.png' %}" alt="Maria Jones" class="img-fluid">
+													</div>
+													<h3 class="font-weight-bold">Maria Jones</h3>
+													<span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div> 
+								<!-- END item -->
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Testimonial Slider -->
+
+
+
+
+
+
+
+
+
+{% endblock body %}
+
+
+
